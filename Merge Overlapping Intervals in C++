@@ -1,0 +1,50 @@
+//Merge Overlapping Interval:
+
+#include<bits/stdc++.h> 
+
+using namespace std;  
+  
+  
+struct Interval  
+{  
+    int start, end;  
+};  
+   
+bool mycomp(Interval a, Interval b)  
+{ return a.start < b.start; }  
+  
+void mergeIntervals(Interval array[], int n)  
+{  
+    sort(array, array+n, mycomp);  
+  
+    int index = 0;  
+   
+  
+    
+    for (int i=1; i<n; i++)  
+    {  
+        if (arr[index].end >=  array[i].start)  
+        {  
+            array[index].end = max(array[index].end, array[i].end);  
+            array[index].start = min(array[index].start, array[i].start);  
+        }  
+        else { 
+            array[index] = array[i];  
+            index++; 
+        }     
+    }  
+  
+    
+    cout << "\n The Merged Intervals are: ";  
+    for (int i = 0; i <= index; i++)  
+        cout << "[" << array[i].s << ", " << array[i].e << "] ";  
+}  
+  
+ 
+int main()  
+{  
+    Interval array[] = { {6,8}, {1,9}, {2,4}, {4,7} };  
+    int n = sizeof(array)/sizeof(array[0]);  
+    mergeIntervals(array, n);  
+    return 0;  
+}  
